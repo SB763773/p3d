@@ -1,0 +1,22 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+tests/e2e/artifacts
+.data
+.env
+.env.*
+!.env.example
+
+# 工作区本地记忆与配置，不进仓库
+.workbuddy/
+
+# 本地推理引擎的产物：环境、权重、下载中转、输出都很大，不进仓库
+local-engine/.venv/
+local-engine/.dl/
+local-engine/out/
+local-engine/models/
+local-engine/_src/
+__pycache__/
+*.pyc

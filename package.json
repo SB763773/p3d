@@ -1,0 +1,49 @@
+{
+  "name": "p3d",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "dev:local": "node scripts/dev.mjs --provider=local",
+    "engine": "node scripts/engine.mjs",
+    "engine:setup": "node scripts/engine-setup.mjs",
+    "engine:check": "local-engine/.venv/Scripts/python.exe local-engine/selfcheck.py",
+    "engine:smoke": "local-engine/.venv/Scripts/python.exe local-engine/smoke.py",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "test": "vitest run",
+    "gate": "npm run typecheck && npm run lint && npm run test && npm run build",
+    "gen:mock-glb": "node scripts/gen-mock-glb.mjs",
+    "smoke": "node tests/e2e/run-smoke.mjs",
+    "gate:all": "npm run gate && npm run smoke",
+    "smoke:local": "node tests/e2e/smoke.mjs",
+    "dev:web": "vite",
+    "api": "node --experimental-strip-types server/index.ts"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.186.1",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "playwright-core": "^1.64.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

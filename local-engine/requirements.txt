@@ -1,0 +1,29 @@
+# 本地推理引擎的 Python 依赖
+#
+# 注意：torch / torchvision 不在这里，它们必须从 PyTorch 官方 cu128 源装
+# （RTX 5060 是 Blackwell / sm_120，旧版 CUDA 轮子跑不了，会报
+# "no kernel image is available for execution on the device"）。
+# 装它们的命令在 scripts/engine-setup.mjs 里，用 npm run engine:setup 一键完成。
+#
+# torchmcubes 被刻意排除：它需要 CMake + MSVC 现场编译，Windows 上装不上。
+# 项目里用 tsr/models/_mcubes_compat.py 以 PyMCubes 替代，接口一致。
+# rembg 同样排除：前端已去背景，那 200 MB 的 onnxruntime 不该为用不到的分支买单。
+
+# transformers 锁在 4.x，原因不是保守，是实测：
+# 5.x 硬性要求 regex>=2025.10.22，而那个版本的 C 扩展（_regex.cp311-win_amd64.pyd）
+# 会被 Windows Smart App Control 拦掉，报 "DLL load failed ... 应用程序控制策略已阻止此文件"。
+# 4.x 对 regex 版本宽松，而 TripoSR 只用 ViTModel，两个大版本下行为一致。
+transformers>=4.40,<5
+# 固定这个版本：新的装得上但加载不了（见上）
+regex==2024.11.6
+omegaconf>=2.3
+einops>=0.7
+trimesh>=4.0
+# 包名是 PyMCubes，但 import 名是 mcubes（见 _mcubes_compat.py）
+PyMCubes>=0.1.6
+fastapi>=0.115
+uvicorn>=0.30
+imageio>=2.34
+Pillow>=10.0
+numpy<2.3
+huggingface-hub>=0.25

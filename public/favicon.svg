@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img">
+  <title>p3d</title>
+  <rect width="32" height="32" rx="7" fill="#18181b" />
+  <path d="M16 6.5 26 12v8l-10 5.5L6 20v-8l10-5.5Z" fill="none" stroke="#fafafa" stroke-width="1.8" stroke-linejoin="round" />
+  <path d="M6 12l10 5.5L26 12M16 17.5V25.5" fill="none" stroke="#fafafa" stroke-width="1.4" stroke-linejoin="round" opacity="0.7" />
+</svg>
